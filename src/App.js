@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import BoxContainerForm from "./components/BoxAll";
+import "./styles/app.scss";
+import { Box, ThemeProvider, createTheme } from "@mui/material";
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#e9ecef"
+    },
+    secondary: {
+      main: "#343a40"
+    }
+  }
+});
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box className="box_container">
+        <BoxContainerForm />
+      </Box>
+    </ThemeProvider>
   );
 }
 
