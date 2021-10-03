@@ -4,10 +4,12 @@ import "../styles/boxall.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import LoopIcon from "@mui/icons-material/Loop";
 import axios from "axios";
+import ProfilGit from "./profilgit";
 const BoxContainerForm = () => {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState([]);
+  const [profil, setProfil] = useState([]);
 
   function handleClick(e) {
     e.preventDefault();
@@ -22,28 +24,38 @@ const BoxContainerForm = () => {
       setLoading(false);
       setRepos(res.data);
       console.log(res.data);
+      // console.log(repos[1]);
+    });
+
+    axios({
+      method: "get",
+      url: `https://api.github.com/users/${username}`
+    }).then(res => {
+      setLoading(false);
+      setProfil(res.data);
+      console.log(res.data);
     });
   }
 
   function renderRepo(repo) {
+    // return (
+    //   <div key={repo.id}>
+    //     <Avatar src={repo.owner.avatar_url} />
+    //   </div>
+    // );
     return (
-      <div key={repo.id}>
-        <Avatar src={repo.owner.avatar_url} />
-      </div>
+      <>
+        <ProfilGit repo={repo} profil={profil} />
+      </>
     );
   }
-
-  // useEffect(() => {
-  //   // fetch(`https://api.github.com/users/${username}/repos`)
-  //   //   .then(res => res.json())
-  //   //   .then(data => {
-  //   //     setRepos(data);
-  //   //     console.log(data);
-  //   //   })
-  //   //   .catch(err => {
-  //   //     console.log(err, "Error");
-  //   //   });
-  // }, []);
+  function OnlyProfil() {
+    return (
+      <>
+        <ProfilGit profil={repos[0]} />
+      </>
+    );
+  }
 
   return (
     <Box className="box-all">
@@ -52,7 +64,7 @@ const BoxContainerForm = () => {
           component="form"
           sx={{
             padding: "0.3%",
-            width: "500px",
+            width: "97%",
             margin: "auto",
             display: "flex ",
             justifyContent: "space-between",
@@ -60,25 +72,40 @@ const BoxContainerForm = () => {
           }}
         >
           <InputBase
+            required
+            startAdornment={
+              loading ? (
+                <LoopIcon className="search-icon" sx={{ margin: "0 10px" }} />
+              ) : (
+                <SearchIcon className="search-icon" sx={{ margin: "0 10px" }} />
+              )
+            }
             placeholder="Search.."
-            sx={{ paddingLeft: "5px", width: "85%", paddingRight: 3 }}
-            onChange={e => {
+            sx={{ paddingLeft: "2px", width: "85%", paddingRight: 3 }}
+            onChange={async e => {
               setUsername(e.target.value);
             }}
             // onClick={e => e.preventDefault()}
-            // onKeyPress={e => {
-            //   if (e.which == 13) {
-            //     e.preventDefault();
-            //     //do something
-            //   }
-            // }}
+            onKeyPress={e => {
+              if (e.which == 13) {
+                e.preventDefault();
+              }
+            }}
             value={username}
           />
-          <Button onClick={handleClick} sx={{ width: "15%" }} color="secondary" variant="contained">
-            {loading ? <LoopIcon /> : <SearchIcon />}
+          <Button
+            onClick={handleClick}
+            sx={{ width: "fit-content", padding: "5px 15px", fontFamily: "Poppins" }}
+            color="secondary"
+            variant="contained"
+          >
+            Search
           </Button>
         </Paper>
-        <Box className="box-repo">{repos.map(renderRepo)}</Box>
+        {/* <Box className="box-repo">{repos.map(renderRepo)}</Box> */}
+        <Box className="box-repo">
+          <ProfilGit repo={repos} profil={profil} />
+        </Box>
       </Box>
     </Box>
   );

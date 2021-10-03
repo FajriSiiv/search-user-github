@@ -1,0 +1,103 @@
+@import "app.scss";
+$bg-good: #495057;
+::-webkit-scrollbar {
+  width: 0;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $bg-good;
+}
+.root-profil {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .box-profil {
+    width: 30%;
+    height: 100%;
+    background: $secondary-color;
+    padding: 10px 5px;
+    border-radius: 8px;
+    overflow: hidden;
+    .profil-name {
+      height: 60%;
+      overflow-y: scroll;
+      margin-top: 15px;
+      border-radius: 10px;
+      z-index: -1;
+      padding-bottom: 50px;
+      h4 {
+        word-wrap: break-word;
+        background: #495057;
+        padding: 10px;
+        margin: 3px;
+        border-radius: 4px;
+        &:nth-child(2) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .repo-profil {
+    width: 69%;
+    height: 100%;
+    background: $secondary-color;
+    border-radius: 8px;
+    padding: 10px 15px;
+    overflow: hidden;
+    .detail-foll {
+      height: 60px;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      background: $bg-good;
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .link-repo {
+      height: 100%;
+      width: 100%;
+      background: $bg-good;
+      padding: 10px 0;
+      border-radius: 8px;
+      transition: all 0.4s ease-out;
+      text-decoration: none;
+      &:hover,
+      &:active {
+        background: $primary-color;
+        h4 {
+          color: $secondary-color;
+        }
+      }
+    }
+    .repo-details {
+      margin-top: 10px;
+      overflow: scroll;
+      height: 100%;
+      border-radius: 8px;
+      padding: 13px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding-bottom: 70px;
+
+      .details-name {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        h4 {
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}
