@@ -12,6 +12,32 @@ $bg-good: #495057;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    .box-profil {
+      width: 100% !important;
+      height: 100%;
+    }
+    .repo-profil {
+      width: 100% !important;
+    }
+    .detail-foll {
+      flex-direction: column !important;
+      height: fit-content !important  ;
+      div {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+      }
+    }
+    .repo-details {
+      grid-template-columns: 1fr !important;
+      padding: 10px 0 !important;
+      h4 {
+        font-size: 13px !important;
+      }
+    }
+  }
   .box-profil {
     width: 30%;
     height: 100%;
