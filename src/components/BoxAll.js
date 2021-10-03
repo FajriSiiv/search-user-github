@@ -67,7 +67,7 @@ const BoxContainerForm = () => {
             }}
             // onClick={e => e.preventDefault()}
             onKeyPress={e => {
-              if (e.which == 13) {
+              if (e.which === 13) {
                 e.preventDefault();
               }
             }}
