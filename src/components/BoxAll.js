@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Box, Paper, InputBase, Button, Avatar } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Paper, InputBase, Button } from "@mui/material";
 import "../styles/boxall.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import LoopIcon from "@mui/icons-material/Loop";
@@ -35,26 +35,6 @@ const BoxContainerForm = () => {
       setProfil(res.data);
       console.log(res.data);
     });
-  }
-
-  function renderRepo(repo) {
-    // return (
-    //   <div key={repo.id}>
-    //     <Avatar src={repo.owner.avatar_url} />
-    //   </div>
-    // );
-    return (
-      <>
-        <ProfilGit repo={repo} profil={profil} />
-      </>
-    );
-  }
-  function OnlyProfil() {
-    return (
-      <>
-        <ProfilGit profil={repos[0]} />
-      </>
-    );
   }
 
   return (
