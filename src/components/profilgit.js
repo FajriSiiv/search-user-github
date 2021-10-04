@@ -8,7 +8,6 @@ const ProfilGit = ({ repo, profil }) => {
   const tgl_pro = new Date(dateProf);
   var moment = require("moment");
   const hasilDate = moment(tgl_pro).format("LL");
-  // var bulans = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   return (
     <Box key={profil.id} className="root-profil">
       <Box className="box-profil">
